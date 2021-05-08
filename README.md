@@ -123,23 +123,23 @@ new Vue({
 
 ​     在路由文件src/router/index.js配置name属性
 
-     ```
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
-     ```
+     const routes = [
+      {
+        path: '/',
+        name: 'Home',
+        component: Home
+      },
+      {
+        path: '/about',
+        name: 'About',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+      }
+    ]
+    
+   
 
 * 通过`<router-link>`标签中的to来传递参数
 
@@ -313,8 +313,17 @@ const routes = [
 
   当url输入错误的时候,应该友好的给一个页面,这个页面就是404页面,可以在路由配置页面中这样配置
 
+  ```
+  {
+      path: '*',
+      component: Error
+    }
+  ```
   
-
+  [代码这里](https://github.com/liguangyi1991/VueRouter/tree/master)
+  
+  
+  
   
 
 
