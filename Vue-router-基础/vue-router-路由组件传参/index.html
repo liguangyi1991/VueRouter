@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>哈喽,你好</h1>
+        <p>
+            <router-link to="/user/12">Home </router-link>
+            <router-link to="/user/15">profile </router-link>
+            <router-link to="/user/16">posts </router-link>
+        </p>
+        <router-view></router-view>
+        <router-view name="sidebar"></router-view>
+
+    </div>
+    <script>
+        const User = {
+            props: ['id'],
+            template: '<div>User {{ id }}</div>'
+        }
+        const Sidebar = {
+            props: ['id'],
+            template: '<div>Slidebar {{id}}</div>'
+        }
+        const routes = [
+            // 对于包含命名视图的路由，你必须分别为每个命名视图添加 `props` 选项：
+            {
+                path: '/user/:id',
+                components: {
+                    default: User,
+                    sidebar: Sidebar
+                },
+                props: {
+                    default: true,
+                    sidebar: true
+                }
+            }
+        ]
+        const router = new VueRouter({
+            routes // (缩写) 相当于 routes: routes
+        })
+        router.beforeEach((to, from, next) => {
+            console.log('我是路由导航');
+            next();
+        })
+        const app = new Vue({
+            router
+        }).$mount('#app')
+    </script>
+
+</body>
+
+</html>

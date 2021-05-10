@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>哈喽,你好</h1>
+        <p>
+            <router-link to="/user/12">去foo</router-link>
+            <router-link to="/user/15">去Bar</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+    <script>
+        
+        const User = {
+            template: '<div>我的id是{{$route.params.id}}</div>',
+            watch: {
+                $route(to,from){
+                    console.log('路由参数发生了变化了',to );
+                }
+            }
+        }
+        const routes = [{
+                path: '/user/:id',
+                component: User
+            }
+        ]
+        const router = new VueRouter({
+            routes // (缩写) 相当于 routes: routes
+        })
+        const app = new Vue({
+            router
+        }).$mount('#app')
+    </script>
+
+</body>
+
+</html>
