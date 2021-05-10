@@ -262,7 +262,7 @@ new Vue({
   </style>
   ```
 
-  在router/index.js配置嵌套路由
+  在router/index.js[配置嵌套路由
 
   ```
   const routes = [
